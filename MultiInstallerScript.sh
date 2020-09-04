@@ -32,7 +32,6 @@ function CMDSTEST() {
 InternetTest
 read -p "Install Nordvpn? (y/n)" installnordvpn_y
 read -p "Install Brave Browser (y/n)" installbraveb_y
-read -p "Install CLI Security Packages?(y/n)" installsecurity_y
 read -p "Install Transmission Torrent Client?(y/n)" installtransmission_y
 #Nordvpn
 if [[ $installnordvpn_y = "y" ]]
@@ -60,17 +59,13 @@ then
     apt install brave-browser brave-keyring
     cd $pwdv
     rm -r braveinstallfolder
-    CMDSTEST BraveInstall
+    CMDSTEST Brave
 fi
-#Security Packages
-if [[$installsecurity_y = "y"]]
-then
-  mkdir securityinstallfolder
-  cd securityinstallfolder
-fi
+
 
 #Transmission
 if [[$installtransmission_y = "y"]]
 then
-  sudo apt-get install transmission 
+  sudo apt-get install transmission
+  CMDSTEST Transmission
 fi
