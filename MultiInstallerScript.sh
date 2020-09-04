@@ -29,10 +29,16 @@ function CMDSTEST() {
        echo -e $1 "${Red}Failed${NC}"
     fi
   }
+
 InternetTest
+add-apt-repository universe
+apt update
 read -p "Install Nordvpn? (y/n)" installnordvpn_y
 read -p "Install Brave Browser (y/n)" installbraveb_y
 read -p "Install Transmission Torrent Client?(y/n)" installtransmission_y
+read -p "Install VLC media player? (y/n)" installvlc_y
+read -p "Install PUTTY ssh client? (y/n)" installputty_y
+read -p "Install Aircrack-ng? (y/n)" installaircrack_y
 #Nordvpn
 if [[ $installnordvpn_y = "y" ]]
 then
@@ -45,7 +51,7 @@ then
     CMDSTEST NordvpnDownload
     nordvpn login
     CMDSTEST NordvpnLogin
-    sudo apt -q autoremove
+    apt -q autoremove
 fi
 #Brave Browser
 if [[$installbraveb_y = "y"]]
@@ -62,10 +68,30 @@ then
     CMDSTEST Brave
 fi
 
-
 #Transmission
 if [[$installtransmission_y = "y"]]
 then
-  sudo apt-get install transmission
+  apt-get install transmission -y
   CMDSTEST Transmission
 fi
+
+#VLC
+if [[$installvlc_y = "y"]]
+then
+  apt-get install VLC -y
+  CMDSTEST VLC
+fi
+
+#PUTTY
+if [[$installputty_y = "y"]]
+then
+  apt-get install putty -y
+  CMDSTEST Putty
+fi
+
+#Aircrack-ng
+if [[$installaircrack_y = "y"]]
+then
+  apt-get install aircrack-ng -y
+  CMDSTEST Aircrack
+fi 
