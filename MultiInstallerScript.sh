@@ -53,7 +53,6 @@ if [[$installbraveb_y = "y"]]
 then
     mkdir braveinstallfolder
     cd braveinstallfolder
-    read -p "Computer Password:" compasswd
     curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc
     apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add - $compasswd
     sh -c 'echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com `lsb_release -sc` maish -c 'echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com `lsb_release -sc` main" >> /etc/apt/sources.list.d/brave.list'n" >> /etc/apt/sources.list.d/brave.list'
