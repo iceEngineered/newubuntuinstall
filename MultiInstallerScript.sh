@@ -2,6 +2,7 @@
 Red='\033[0;31m'
 NC='\033[0m'
 Green='\033[0;32m'
+Blue='\033[0;34m'
 function roottest() {
   ROOT_UID=0   # Root has $UID 0.
 
@@ -33,12 +34,39 @@ function CMDSTEST() {
 InternetTest
 add-apt-repository universe
 apt update
+
+echo -e "${Blue}
+           __
+.-.__      \ .-.  ___  __
+|_|  '--.-.-(   \/\;;\_\.-._______.-.
+(-)___     \ \ .-\ \;;\(   \       \ \
+ Y    '---._\_((Q)) \;;\\ .-\     __(_)
+ I           __'-' / .--.((Q))---'    \,
+ I     ___.-:    \|  |   \'-'_          \
+ A  .-'      \ .-.\   \   \ \ '--.__     '\
+ |  |____.----((Q))\   \__|--\_      \     '
+    ( )        '-'  \_  :  \-' '--.___\
+     Y                \  \  \       \(_)
+     I                 \  \  \         \,
+     I                  \  \  \          \
+     A                   \  \  \          '\
+     |                    \  \__|           '
+                           \_:.  \
+      A Band1t Script!       \ \  \
+                              \ \  \
+                               \_\_|
+
+                            ${NC}"
 read -p "Install Nordvpn? (y/n)" installnordvpn_y
 read -p "Install Brave Browser (y/n)" installbraveb_y
 read -p "Install Transmission Torrent Client?(y/n)" installtransmission_y
 read -p "Install VLC media player? (y/n)" installvlc_y
 read -p "Install PUTTY ssh client? (y/n)" installputty_y
 read -p "Install Aircrack-ng? (y/n)" installaircrack_y
+read -p "Install PenTester's Framework? (y/n)" installptf_y
+read -p "Install Atom? (y/n)" installatom_y
+read -p "Install Discord? (y/n)" installdiscord_y
+read -p "Install Ettercap? (y/n)" installettercap_y
 #Nordvpn
 if [[ $installnordvpn_y = "y" ]]
 then
@@ -94,4 +122,31 @@ if [[$installaircrack_y = "y"]]
 then
   apt-get install aircrack-ng -y
   CMDSTEST Aircrack
-fi 
+fi
+#PTF
+if [[$installptf_y = "y"]]
+then
+  apt-get install git -y
+  git clone https://github.com/trustedsec/ptf
+  cd ptf
+  pip3 install -r requirements.txt
+  CMDSTEST ptf
+  echo -e "${Red}You have to run PTF yourself to install everything (and good luck!)${NC}"
+fi
+
+#Discord
+if [[$installdiscord_y = "y"]]
+then
+  snap install Discord
+  CMDSTEST Discord
+fi
+
+#Ettercap
+if [[$installettercap_y = "y"]]
+then
+  apt install ettercap
+  apt install ettercap-graphical
+  CMDSTEST Ettercap GUI
+fi
+
+echo"Install done!"
