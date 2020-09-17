@@ -64,8 +64,6 @@ echo -e  "${Blue}
                            ${NC}"
 
 read -p "Install Nordvpn? (y/n)" installnordvpn_y
-read -p "Install Brave Browser (y/n)" installbraveb_y
-read -p "If Yes enter com passwd" compasswd
 read -p "Install Transmission Torrent Client?(y/n)" installtransmission_y
 read -p "Install VLC media player? (y/n)" installvlc_y
 read -p "Install PUTTY ssh client? (y/n)" installputty_y
