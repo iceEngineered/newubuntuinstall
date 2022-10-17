@@ -72,6 +72,7 @@ read -p "Install PenTester's Framework? (y/n)" installptf_y
 read -p "Install Atom? (y/n)" installatom_y
 read -p "Install Discord? (y/n)" installdiscord_y
 read -p "Install Ettercap? (y/n)" installettercap_y
+read -p "Install Wordpress? (y/n)" instalwordpress_y
 apt-get update -qq
 #Nordvpn
 if [ $installnordvpn_y = "y" ]
@@ -141,10 +142,32 @@ then
   apt install ettercap-graphical
   CMDSTEST Ettercap GUI
 fi
-
+#wordpress
+if [ $installwordpress_y = "y" ]
+then
+apt update
+apt install apache2 \
+                 ghostscript \
+                 libapache2-mod-php \
+                 mysql-server \
+                 php \
+                 php-bcmath \
+                 php-curl \
+                 php-imagick \
+                 php-intl \
+                 php-json \
+                 php-mbstring \
+                 php-mysql \
+                 php-xml \
+                 php-zip
+mkdir -p /srv/www
+chown www-data: /srv/www
+curl https://wordpress.org/latest.tar.gz | sudo -u www-data tar zx -C /srv/www
+fi
 #Atom 
 if [ $installatom_y = "y" ]
 then 
   snap  install atom --classic
 fi
 echo "Install done!"
+echo"follow this guide for wordpress install if you chose that start after step 3. https://ubuntu.com/tutorials/install-and-configure-wordpress#3-install-wordpress "
