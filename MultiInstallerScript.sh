@@ -163,6 +163,13 @@ apt install apache2 \
 mkdir -p /srv/www
 chown www-data: /srv/www
 curl https://wordpress.org/latest.tar.gz | sudo -u www-data tar zx -C /srv/www
+touch /etc/apache2/sites-available/wordpress.conf
+echo "<VirtualHost *:80>\n    DocumentRoot /srv/www/wordpress\n    <Directory /srv/www/wordpress>\n        Options FollowSymLinks\n        AllowOverride Limit Options FileInfo\n        DirectoryIndex index.php\n        Require all granted\n    </Directory>\n    <Directory /srv/www/wordpress/wp-content>\n        Options FollowSymLinks\n        Require all granted\n    </Directory>\n</VirtualHost>" >> /etc/apache2/sites-available/wordpress.conf
+a2ensite wordpress
+sudo a2enmod rewrite
+echo "<VirtualHost *:80>\n    ServerName hostname.example.com\n    ... # the rest of the VHost configuration\n</VirtualHost>" >> /etc/hosts
+sudo service apache2 reload
+echo "follow this guide starting at step 5 to continue your wordpress installation https://ubuntu.com/tutorials/install-and-configure-wordpress#5-configure-database
 fi
 #Atom 
 if [ $installatom_y = "y" ]
