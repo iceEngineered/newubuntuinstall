@@ -169,7 +169,7 @@ a2ensite wordpress
 sudo a2enmod rewrite
 echo "<VirtualHost *:80>\n    ServerName hostname.example.com\n    ... # the rest of the VHost configuration\n</VirtualHost>" >> /etc/hosts
 sudo service apache2 reload
-echo "follow this guide starting at step 5 to continue your wordpress installation https://ubuntu.com/tutorials/install-and-configure-wordpress#5-configure-database
+echo "follow this guide starting at step 5 to continue your wordpress installation https://ubuntu.com/tutorials/install-and-configure-wordpress#5-configure-database"
 fi
 #Atom 
 if [ $installatom_y = "y" ]
@@ -177,4 +177,3 @@ then
   snap  install atom --classic
 fi
 echo "Install done!"
-echo"follow this guide for wordpress install if you chose that start after step 3. https://ubuntu.com/tutorials/install-and-configure-wordpress#3-install-wordpress "
