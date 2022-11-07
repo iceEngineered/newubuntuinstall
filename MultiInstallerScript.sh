@@ -72,7 +72,7 @@ read -p "Install PenTester's Framework? (y/n)" installptf_y
 read -p "Install Atom? (y/n)" installatom_y
 read -p "Install Discord? (y/n)" installdiscord_y
 read -p "Install Ettercap? (y/n)" installettercap_y
-read -p "Install Wordpress? (y/n)" instalwordpress_y
+read -p "Install Wordpress? (y/n)" installwordpress_y
 apt-get update -qq
 #Nordvpn
 if [ $installnordvpn_y = "y" ]
@@ -169,6 +169,7 @@ a2ensite wordpress
 sudo a2enmod rewrite
 echo "<VirtualHost *:80>\n    ServerName hostname.example.com\n    ... # the rest of the VHost configuration\n</VirtualHost>" >> /etc/hosts
 sudo service apache2 reload
+sudo service apache2 restart
 echo "follow this guide starting at step 5 to continue your wordpress installation https://ubuntu.com/tutorials/install-and-configure-wordpress#5-configure-database"
 fi
 #Atom 
