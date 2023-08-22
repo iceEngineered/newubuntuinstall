@@ -1,0 +1,20 @@
+#!/bin/bash
+
+Green='\033[0;32m'
+Red='\033[0;31m'
+NC='\033[0m'
+function CMDSTEST() {
+    if [ $? -eq 0 ]; then
+       echo -e $1 "${Green}Successfully${NC}"
+    else
+       echo -e $1 "${Red}Failed${NC}"
+    fi
+  }
+#one line script to auto update, will likely run on login everytime so will make it quiet.
+clear
+apt -qq update
+CMDSTEST update
+apt -qq full-upgrade
+CMDSTEST fullUpgrade
+apt -qq autoremove
+CMDSTEST autoremove
